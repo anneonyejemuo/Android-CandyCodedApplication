@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import android.view.MenuItem;
+
 import com.pluralsight.candycoded.DB.CandyContract.CandyEntry;
 import com.pluralsight.candycoded.DB.CandyCursorAdapter;
 import com.pluralsight.candycoded.DB.CandyDbHelper;
@@ -73,15 +75,25 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent infoIntent = new Intent(this, InfoActivity.class);
+        startActivity(infoIntent);
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    // ***
+    // TODO - Task 1 - Show Store Information Activity
+    // ***
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
         return true;
     }
-    // ***
-    // TODO - Task 1 - Show Store Information Activity
-    // ***
 
     private void addCandiesToDatabase(Candy[] candies) {
         SQLiteDatabase db = candyDbHelper.getWritableDatabase();
